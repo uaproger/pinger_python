@@ -103,6 +103,7 @@ import {session, toast} from "aprog";
 const services = ref([]);
 const newName = ref('');
 const newUrl = ref('');
+const emit = defineEmits(['logout-event']);
 
 const getAuthHeaders = () => {
   const token = session.get('access_token');
@@ -115,6 +116,7 @@ const fetchServices = async () => {
     services.value = response.data;
   } catch (error) {
     toast().error('Помилка завантаження або потрібна авторизація');
+    emit('logout-event');
   }
 };
 

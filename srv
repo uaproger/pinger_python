@@ -50,6 +50,7 @@ function show_help() {
     echo -e "  ${GREEN}up${NC}                        ${WHITE}Запустити всі контейнери${NC}"
     echo -e "  ${GREEN}down${NC}                      ${WHITE}Зупинити всі контейнери${NC}"
     echo -e "  ${GREEN}restart${NC}                   ${WHITE}Перезапустити всі контейнери${NC}"
+    echo -e "  ${GREEN}ps${NC}                        ${WHITE}Побачити список контейнерів${NC}"
 
     echo
     echo -e "  ${GREEN}[shell|bash]${NC} ${WHITE}[container]${NC}  ${WHITE}Запустити оболонку bash у потрібному контейнері${NC}"
@@ -86,6 +87,10 @@ if [ $# -gt 0 ]; then
     # Перезапустити всі контейнери
     elif [ "$1" == "restart" ]; then
         docker-compose down && docker-compose up --no-recreate -d
+
+    # Побачити список контейнерів
+    elif [ "$1" == "ps" ]; then
+        docker-compose ps
 
     # Запустити оболонку bash у потрібному контейнері
     elif [ "$1" == "shell" ] || [ "$1" == "bash" ]; then

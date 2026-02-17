@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
-    'pinger_app',
+    'backend',
 ]
 
 MIDDLEWARE = [
@@ -149,7 +149,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CELERY_BEAT_SCHEDULE = {
     'check-services-every-5-minutes': {
-        'task': 'pinger_app.tasks.check_all_services_cron',
+        'task': 'backend.tasks.check_all_services_cron',
         'schedule': 300.0,
     },
 }

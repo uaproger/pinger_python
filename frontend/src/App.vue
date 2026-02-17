@@ -37,7 +37,7 @@ const logout = () => {
       </p>
     </div>
     <div v-else>
-      <ServiceList />
+      <ServiceList @logout-event="logout" />
     </div>
   </main>
 </template>
