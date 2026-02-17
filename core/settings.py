@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from celery.schedules import crontab
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -148,8 +150,12 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CELERY_BEAT_SCHEDULE = {
-    'check-services-every-5-minutes': {
+    'check-every-5-min': {
         'task': 'backend.tasks.check_all_services_cron',
         'schedule': 300.0,
+    },
+    'daily-midnight-check': {
+        'task': 'backend.tasks.check_all_services_cron',
+        'schedule': crontab(minute=0, hour=0),
     },
 }
